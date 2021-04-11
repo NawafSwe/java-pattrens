@@ -4,7 +4,7 @@ public abstract class Database {
     private String uri;
     private String name;
 
-    Database(String uri, String name) {
+   public Database(String uri, String name) {
         this.uri = uri;
         this.name = name;
     }
