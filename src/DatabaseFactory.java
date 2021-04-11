@@ -1,5 +1,4 @@
-public abstract class DatabaseFactory {
-    public DatabaseFactory(){}
+public class DatabaseFactory {
 
     public static Database createDatabase(String type, String uri, String name) throws Exception {
         return switch (type) {
