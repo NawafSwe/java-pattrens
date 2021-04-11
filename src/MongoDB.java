@@ -5,6 +5,8 @@ public class MongoDB extends Database {
 
     @Override
     void connect() {
-
+        // different databases can have different ways of connections
+        System.out.println("MongoDB connection successfully done");
+        System.out.println("Database name { " + this.getName() + " }");
     }
 }
