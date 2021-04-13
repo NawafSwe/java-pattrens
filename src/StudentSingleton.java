@@ -1,30 +1,37 @@
 // creating singleton class
 
+import java.util.Arrays;
 import java.util.Objects;
+import java.util.Random;
 
 public class StudentSingleton {
-    private static StudentSingleton singleton = null;
-    private String studentId, studentName;
+    private static StudentSingleton[] singletonList = null;
+    private int studentId;
+    private String studentName;
     // limiting number of instances
-    private static final int LIMIT = 8;
+    private static final int LIMIT = 3;
     private static int instanceCount = 0;
 
     private StudentSingleton() {
     }
 
     // get instance to get current instance
-    public static synchronized StudentSingleton getInstance() {
+    public static synchronized StudentSingleton[] getInstance() {
 
         if (instanceCount > LIMIT) {
-            return null;
+            return singletonList;
         } else {
-            singleton = new StudentSingleton();
+            singletonList = new StudentSingleton[LIMIT];
+            singletonList[instanceCount] = new StudentSingleton();
+            Random rand = new Random();
+            singletonList[instanceCount].studentId = rand.nextInt(8);
+            singletonList[instanceCount].studentName = "this is obj numb " + instanceCount;
             instanceCount++;
-            return singleton;
+            return singletonList;
         }
     }
 
-    public String getStudentId() {
+    public int getStudentId() {
         return studentId;
     }
 
@@ -32,11 +39,16 @@ public class StudentSingleton {
         return studentName;
     }
 
-    public void setStudentId(String studentId) {
+    public void setStudentId(int studentId) {
         this.studentId = studentId;
     }
 
     public void setStudentName(String studentName) {
         this.studentName = studentName;
+    }
+
+    // getting obj by id
+    public static StudentSingleton getById(int id) {
+        return (StudentSingleton) Arrays.stream(singletonList).filter(obj -> obj.studentId == id);
     }
 }
