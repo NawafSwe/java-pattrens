@@ -5,28 +5,28 @@ import java.util.Objects;
 import java.util.Random;
 
 public class StudentSingleton {
-    private static StudentSingleton[] singletonList = null;
+
     private int studentId;
     private String studentName;
     // limiting number of instances
     private static final int LIMIT = 3;
     private static int instanceCount = 0;
 
-    private StudentSingleton() { }
+    private StudentSingleton() {
+    }
 
     // get instance to get current instance
     public static synchronized StudentSingleton[] getInstance() {
-
         if (instanceCount > LIMIT) {
-            return singletonList;
+            return StudentStore.getSingletonList();
         } else {
-            singletonList = new StudentSingleton[LIMIT];
-            singletonList[instanceCount] = new StudentSingleton();
+            StudentStore.initList(LIMIT);
+            StudentStore.getSingletonList()[instanceCount] = new StudentSingleton();
             Random rand = new Random();
-            singletonList[instanceCount].studentId = rand.nextInt(8);
-            singletonList[instanceCount].studentName = "this is obj numb " + instanceCount;
+            StudentStore.getSingletonList()[instanceCount].studentId = rand.nextInt(8);
+            StudentStore.getSingletonList()[instanceCount].studentName = "this is obj numb " + instanceCount;
             instanceCount++;
-            return singletonList;
+            return StudentStore.getSingletonList();
         }
     }
 

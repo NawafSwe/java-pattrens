@@ -14,4 +14,8 @@ public class StudentStore {
     public static StudentSingleton getById(int id) {
         return (StudentSingleton) Arrays.stream(singletonList).filter(obj -> obj.getStudentId() == id);
     }
+
+    public static void initList(int limit) {
+        singletonList = new StudentSingleton[limit];
+    }
 }
