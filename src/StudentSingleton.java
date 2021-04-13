@@ -12,8 +12,7 @@ public class StudentSingleton {
     private static final int LIMIT = 3;
     private static int instanceCount = 0;
 
-    private StudentSingleton() {
-    }
+    private StudentSingleton() { }
 
     // get instance to get current instance
     public static synchronized StudentSingleton[] getInstance() {
@@ -47,8 +46,5 @@ public class StudentSingleton {
         this.studentName = studentName;
     }
 
-    // getting obj by id
-    public static StudentSingleton getById(int id) {
-        return (StudentSingleton) Arrays.stream(singletonList).filter(obj -> obj.studentId == id);
-    }
+
 }
