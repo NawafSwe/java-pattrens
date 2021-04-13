@@ -5,13 +5,23 @@ import java.util.Objects;
 public class StudentSingleton {
     private static StudentSingleton singleton = null;
     private String studentId, studentName;
+    // limiting number of instances
+    private static final int LIMIT = 8;
+    private static int instanceCount = 0;
 
     private StudentSingleton() {
     }
 
-    public static StudentSingleton getInstance() {
-        return Objects.requireNonNullElseGet(singleton, StudentSingleton::new);
+    // get instance to get current instance
+    public static synchronized StudentSingleton getInstance() {
 
+        if (instanceCount > LIMIT) {
+            return null;
+        } else {
+            singleton = new StudentSingleton();
+            instanceCount++;
+            return singleton;
+        }
     }
 
     public String getStudentId() {
