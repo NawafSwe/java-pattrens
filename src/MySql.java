@@ -22,6 +22,7 @@ public class MySql implements Database {
         this.name = name;
     }
 
+    // overriding to connect to the db
     @Override
     public void connect() {
         // different databases can have different ways of connections

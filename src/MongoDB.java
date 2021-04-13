@@ -22,12 +22,14 @@ public class MongoDB implements Database {
         this.name = name;
     }
 
+    // overriding to connect to the db
     @Override
     public void connect() {
         // different databases can have different ways of connections
         System.out.println("MongoDB connection successfully done");
         System.out.println("Database name { " + this.getName() + " }");
     }
+
     @Override
     public String toString() {
         return "MySql{" +

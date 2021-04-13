@@ -23,6 +23,7 @@ public class Postgresql implements Database {
         this.uri = uri;
     }
 
+    // overriding to connect to the db
     @Override
     public void connect() {
         // different databases can have different ways of connections
