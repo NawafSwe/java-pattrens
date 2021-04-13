@@ -28,15 +28,15 @@ public class Main {
 
             databases[0] = DatabaseFactory.createDatabase(databasesEnum.MongoDB.name(), mongoUri, mongoName);
             // testing database for mongo if it was created or not
-            System.out.println(databases[0]);
+            databases[0].connect();
 
             // testing database for MySql if it was created or not
             databases[1] = DatabaseFactory.createDatabase(databasesEnum.MySql.name(), mysqlUri, mysqlName);
-            System.out.println(databases[1]);
+            databases[1].connect();
 
             // testing database for Postgresql if it was created or not
             databases[2] = DatabaseFactory.createDatabase(databasesEnum.Postgresql.name(), psqlUri, psqlName);
-            System.out.println(databases[2]);
+            databases[2].connect();
 
         } catch (Exception e) {
             System.out.println(e.getLocalizedMessage());
