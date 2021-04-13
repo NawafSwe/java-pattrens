@@ -1,13 +1,10 @@
 
 public class Main {
 
-    // to avoid typos
+    // to avoid typos in strings
     enum databasesEnum {MongoDB, Postgresql, MySql}
 
     public static void main(String[] args) {
-        // write your code here
-        // declaring enum for databases
-
         // testing database factory
         Database[] databases = new Database[3];
 
@@ -41,8 +38,6 @@ public class Main {
         } catch (Exception e) {
             System.out.println(e.getLocalizedMessage());
         }
-
-
     }
 }
 
