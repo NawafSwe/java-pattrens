@@ -9,7 +9,7 @@ public class StudentSingleton {
             if (StudentStore.getInstanceCount() < StudentStore.getLIMIT()) {
                 int index = StudentStore.getInstanceCount();
                 StudentStore.getSingletonList()[index] = new StudentSingleton();
-                StudentStore.getSingletonList()[index].setStudentId(index);
+                StudentStore.getSingletonList()[index].releaseInstanceId(index);
                 StudentStore.getSingletonList()[index].setStudentName("this is obj numb " + index);
                 StudentStore.setInstanceCount(StudentStore.getInstanceCount() + 1);
             }
@@ -18,7 +18,7 @@ public class StudentSingleton {
             StudentStore.initList();
             int index = StudentStore.getInstanceCount();
             StudentStore.getSingletonList()[index] = new StudentSingleton();
-            StudentStore.getSingletonList()[index].setStudentId(index);
+            StudentStore.getSingletonList()[index].releaseInstanceId(index);
             StudentStore.getSingletonList()[index].setStudentName("this is obj numb " + index);
             StudentStore.setInstanceCount(index + 1);
 
@@ -35,7 +35,8 @@ public class StudentSingleton {
         return studentName;
     }
 
-    public void setStudentId(int studentId) {
+    // making instance available by id
+    public void releaseInstanceId(int studentId) {
         this.studentId = studentId;
     }
 

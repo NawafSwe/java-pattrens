@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class StudentStore {
     private static StudentSingleton[] singletonList = null;
     private static final int LIMIT = 3;
