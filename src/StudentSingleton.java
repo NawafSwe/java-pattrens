@@ -1,19 +1,8 @@
 // creating singleton class
-
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.Random;
-
 public class StudentSingleton {
-
     private int studentId;
     private String studentName;
-    // limiting number of instances
-
-
-    private StudentSingleton() {
-    }
-
+    private StudentSingleton() { }
     // get instance to get current instance
     public static synchronized StudentSingleton[] getInstance() {
         if (StudentStore.getSingletonList() != null) {
@@ -52,10 +41,6 @@ public class StudentSingleton {
 
     public void setStudentName(String studentName) {
         this.studentName = studentName;
-    }
-
-    public StudentSingleton getById(int id) {
-        return StudentStore.getById(id);
     }
 
     @Override

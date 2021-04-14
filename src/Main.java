@@ -1,13 +1,10 @@
 import java.util.Objects;
 
 public class Main {
-    // to avoid typos in strings
-    enum databasesEnum {MongoDB, Postgresql, MySql}
-
     public static void main(String[] args) {
         try {
-            // this will call func to get list of current instance if limit reached it will return null, otherwise it will create new instance and added to the current list and return it
-
+            // this will call func to get list of current instance if limit reached it will return the current list,
+            // otherwise it will create new instance and added to the current list and return it
             StudentSingleton.getInstance();
             StudentSingleton.getInstance();
             StudentSingleton.getInstance();
