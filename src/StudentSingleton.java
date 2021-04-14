@@ -9,25 +9,33 @@ public class StudentSingleton {
     private int studentId;
     private String studentName;
     // limiting number of instances
-    private static final int LIMIT = 3;
-    private static int instanceCount = 0;
+
 
     private StudentSingleton() {
     }
 
     // get instance to get current instance
     public static synchronized StudentSingleton[] getInstance() {
-        if (instanceCount > LIMIT) {
-            return StudentStore.getSingletonList();
+        if (StudentStore.getSingletonList() != null) {
+            if (StudentStore.getInstanceCount() < StudentStore.getLIMIT()) {
+                int index = StudentStore.getInstanceCount();
+                StudentStore.getSingletonList()[index] = new StudentSingleton();
+                StudentStore.getSingletonList()[index].setStudentId(index);
+                StudentStore.getSingletonList()[index].setStudentName("this is obj numb " + index);
+                StudentStore.setInstanceCount(StudentStore.getInstanceCount() + 1);
+            }
+
         } else {
-            StudentStore.initList(LIMIT);
-            StudentStore.getSingletonList()[instanceCount] = new StudentSingleton();
-            Random rand = new Random();
-            StudentStore.getSingletonList()[instanceCount].studentId = rand.nextInt(8);
-            StudentStore.getSingletonList()[instanceCount].studentName = "this is obj numb " + instanceCount;
-            instanceCount++;
-            return StudentStore.getSingletonList();
+            StudentStore.initList();
+            int index = StudentStore.getInstanceCount();
+            StudentStore.getSingletonList()[index] = new StudentSingleton();
+            StudentStore.getSingletonList()[index].setStudentId(index);
+            StudentStore.getSingletonList()[index].setStudentName("this is obj numb " + index);
+            StudentStore.setInstanceCount(index + 1);
+
         }
+        // if exceeding limit return the list itself
+        return StudentStore.getSingletonList();
     }
 
     public int getStudentId() {
@@ -46,5 +54,15 @@ public class StudentSingleton {
         this.studentName = studentName;
     }
 
+    public StudentSingleton getById(int id) {
+        return StudentStore.getById(id);
+    }
 
+    @Override
+    public String toString() {
+        return "StudentSingleton{" +
+                "studentId=" + studentId +
+                ", studentName='" + studentName + '\'' +
+                '}';
+    }
 }

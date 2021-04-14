@@ -2,6 +2,8 @@ import java.util.Arrays;
 
 public class StudentStore {
     private static StudentSingleton[] singletonList = null;
+    private static final int LIMIT = 3;
+    private static int instanceCount = 0;
 
     private StudentStore() {
     }
@@ -12,10 +14,27 @@ public class StudentStore {
 
     // getting obj by id
     public static StudentSingleton getById(int id) {
-        return (StudentSingleton) Arrays.stream(singletonList).filter(obj -> obj.getStudentId() == id);
+        for (StudentSingleton studentSingleton : singletonList) {
+            if (studentSingleton != null)
+                if (studentSingleton.getStudentId() == id)
+                    return studentSingleton;
+        }
+        return null;
     }
 
-    public static void initList(int limit) {
-        singletonList = new StudentSingleton[limit];
+    public static void initList() {
+        singletonList = new StudentSingleton[LIMIT];
+    }
+
+    public static int getInstanceCount() {
+        return instanceCount;
+    }
+
+    public static int getLIMIT() {
+        return LIMIT;
+    }
+
+    public static void setInstanceCount(int instanceCount) {
+        StudentStore.instanceCount = instanceCount;
     }
 }
